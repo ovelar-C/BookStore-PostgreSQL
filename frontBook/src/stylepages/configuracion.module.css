@@ -1,0 +1,20 @@
+.contenedor{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+}
+.list,.links{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
+.list{
+    margin: 1rem;
+}
+.datos{
+    display: flex;
+    justify-content: center;
+}

@@ -1,0 +1,26 @@
+.datos{
+    background-color: rgb(163, 111, 81);
+    border: 2px solid black;
+    margin: 2rem;
+}
+.lista{
+    margin: 1rem;
+}
+.item{
+    background-color: rgb(248, 228, 198);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 0.5rem;
+    margin: 1rem;
+    border: 2px solid rgb(53, 52, 52);
+}
+.boton{
+    display: flex;
+    text-align: center;
+    border: 2px solid black;
+    border-radius: 8px;
+    padding: 0.5rem;
+    background-color: rgb(151, 66, 66);
+    color: white;
+}

@@ -1,0 +1,76 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; 
+}
+body{
+    font-family:system-ui, sans-serif;
+    min-height: 100vh;
+    background-color: #f0f0d8 ;
+
+
+}
+.titulo{
+    text-align: center;
+    margin: 2rem;
+    background-color: #a86b4c;
+    color: white;
+    padding: 0.5rem;
+    box-shadow: 
+    0px 5px black,
+    0px -5px black,
+    5px 0px black,
+    -5px 0px black, 
+
+    0px 10px #00000038, 
+    5px 5px #00000038, 
+    -5px 5px #00000038, 
+    inset 0px 0px #ffffff36;
+}
+.form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 1rem;
+    background-color: rgb(255, 255, 255);
+
+    border: 2px solid black;
+     box-shadow:
+        5px 5px 0px black,
+        8px 8px 15px rgba(0,0,0,.15);
+}
+.inputs {
+    border: 2px solid black;
+    padding: 0.5rem;
+    margin: 1rem;
+}
+.botones{
+    padding: 0.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin: 0.5rem;
+    cursor: pointer;
+    background-color: #742628;
+    color: white;
+    font-size: 1rem;
+
+    border: 2px solid black;
+     box-shadow:
+        5px 5px 0px black,
+        8px 8px 15px rgba(0,0,0,.15);
+
+}
+.botones:active{
+    transform: translateY(2px)
+}
+.contenedor {  
+    box-shadow: 0px 5px black, 0px -5px black, 5px 0px black, -5px 0px black, 0px 10px #00000038, 5px 5px #00000038, -5px 5px #00000038, inset 0px 5px #ffffff36;
+
+}
+a{
+    text-decoration: none;
+}
+label{
+    font-size: 1rem;
+}

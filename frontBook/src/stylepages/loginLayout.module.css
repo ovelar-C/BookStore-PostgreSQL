@@ -1,0 +1,41 @@
+.login {
+    display: flex;
+    margin-top: -2rem;
+}
+
+.izquierda {
+    flex: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0d8 ;
+
+}
+
+.derecha {
+    flex: 1;
+    display: flex;
+    height: 100vh;
+    align-items: center;
+    background-color: #8d3327;
+}
+
+.encabezado {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.encabezado h1 {
+    padding: 1rem;
+}
+.book {
+    max-height: 30rem;
+    margin-left: -10rem;
+}
+
+.logo {
+    width: 3rem;
+    height: 3rem;
+}

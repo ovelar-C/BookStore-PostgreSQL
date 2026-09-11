@@ -1,0 +1,54 @@
+
+.contenedorCatalogo {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.catalogo {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 2rem;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.marco {
+    padding: 5px;
+    background-color: white;
+    border: 2px solid black;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition: transform .2s, box-shadow .2s;
+}
+
+.marco:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.imagen {
+    width: 130px;
+    height: auto;
+    object-fit: cover;
+    display: block;
+    cursor: pointer;
+}
+
+.tituloCatalog {
+    margin-top: 1rem;
+    font-size: 1rem;
+    text-align: center;
+    font-weight: 500;
+}
+.precio{
+    color: #742628;
+
+    
+}
