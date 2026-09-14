@@ -15,10 +15,13 @@ export default function Login() {
     async function manejarSubmit(e) {
         e.preventDefault();
         try {
-            await signUser(dataUser);
+            const response = await signUser(dataUser);
+            if(!response.ok){
+                setError(response.data.error);
+                console.log(response);
+            }
         } catch (error) {
-            console.log(error);
-            setError(error);
+            setError(error.message);
         }
     }
 
@@ -54,7 +57,7 @@ export default function Login() {
                         onChange={manejarChange} required />
 
                     {error &&
-                        <span>Error en los datos. <br /> </span>}
+                        <span>{error} <br /> </span>}
                     <span>¿NO TENES CUENTA? <Link to={'/register'}>registrate</Link></span>
                     <button type='submit' className='botones'>Sign In</button>
                 </form>

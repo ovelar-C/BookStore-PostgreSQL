@@ -7,7 +7,7 @@ export default function AdminRoutes(){
 
         if(!datosUser) return <Navigate to="/login" replace/>
      
-        if(datosUser.rol !== "admin"){
+        if(datosUser.rol_id !== 2){
             return <Navigate to="/" replace/>
         }
         return <Outlet/>

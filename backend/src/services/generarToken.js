@@ -2,9 +2,10 @@ const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
 async function generarToken(usuario) {
+    console.log(usuario.id, usuario.rol_id);
     const payload = {
         id: usuario.id,
-        rol: usuario.rol
+        rol: usuario.rol_id
     }
 
     const token = jwt.sign(
@@ -14,6 +15,4 @@ async function generarToken(usuario) {
     );
     return token;
 }
-exports.module = {
-    generarToken
-}
+module.exports = generarToken;

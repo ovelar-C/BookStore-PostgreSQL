@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 
 export default function useGetAllBook(){
     const[datos,setDatos] = useState([]);
-    const api = "http://localhost:3000/api/bookstore/books";
+    const api = "http://localhost:3000/api/books";
 
     useEffect(()=>{
         axios.get(api)

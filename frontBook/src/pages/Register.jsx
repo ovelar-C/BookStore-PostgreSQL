@@ -14,9 +14,14 @@ export default function Register() {
     async function manejarSubmit(e){
         e.preventDefault();
         try {
-            await signUp(dataUser);
+            const response = await signUp(dataUser);
+            if(!response.ok){
+                setError(response.data.error);
+                return;
+            }
+            setError("");
         } catch (error) {
-            setError(error);
+            setError(error.message);
         }
     }
 
@@ -50,7 +55,7 @@ export default function Register() {
                         type='password'
                         value={dataUser.password}
                         onChange={manejarChange} required />
-                        {error && <h3>correo ya registrado</h3>}
+                        {error && <h3>{error}</h3>}
                     <button type='submit' className='botones'>Sign Up</button>
                 </form>
             </LayoutLogin>

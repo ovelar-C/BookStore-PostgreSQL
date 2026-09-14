@@ -24,7 +24,7 @@ export default function Configuracion() {
                         <button
                             className="botones"
                             onClick={() => setShowUsers(!showUsers)}>
-                            {showUsers ? "ocultar usurios" : "mostrar usuarios"}
+                            {showUsers ? "ocultar usuarios" : "mostrar usuarios"}
                         </button>
                     </div>
                     <div className={styles.links}>

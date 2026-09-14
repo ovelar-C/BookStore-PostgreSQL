@@ -6,7 +6,7 @@ export default function Profile() {
     const { datosUser } = useContext(DatosUserContext);
     return (
         <>
-        <h1>FAVORITOS Y COMPRAS</h1>
+            <h1>FAVORITOS Y COMPRAS</h1>
             <div className={styles.perfil}>
                 <h2 className={styles.titulo}>Perfil</h2>
 
@@ -19,14 +19,19 @@ export default function Profile() {
                         <span>Email</span>
                         {datosUser?.email}
                     </p>
-                    <p>
-                        <span>Rol</span>
-                        {datosUser?.rol}
-                    </p>
-                    <p>
-                        <span>Password</span>
-                        {datosUser?.password}
-                    </p>
+                    {datosUser?.rol_id === 2 && (
+                        <>
+                            <p>
+                                <span>Rol</span>
+                                {datosUser.rol_id}
+                            </p>
+
+                            <p>
+                                <span>Password</span>
+                                {datosUser.password}
+                            </p>
+                        </>
+                    )}
                 </div>
             </div>
 

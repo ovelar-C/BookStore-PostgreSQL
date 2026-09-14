@@ -6,7 +6,7 @@ const createUser = async (username,email, passwordHash) =>{
     (username, email, password) 
     VALUES ($1,$2,$3) RETURNING *`;
     const resultado = await pool.query(query,[username,email, passwordHash]);
-    return resultado;
+    return resultado.rows[0];
 };
 
 const findEmail = async (email) =>{
@@ -15,7 +15,6 @@ const findEmail = async (email) =>{
     FROM usuarios 
     WHERE email =$1`;
     const usuario = await pool.query(query,[email]);
-    console.log(usuario);
     //devolvemos el usuario fila 0
     return usuario.rows[0];
 }
@@ -39,6 +38,18 @@ const getAllUser = async ()=>{
         ON u.rol_id = r.id`;
     const usuarios = await pool.query(query);
     return usuarios.rows;
+}
+const deleteUser = async (id)=>{
+    const query = `
+    DELETE FROM usuarios
+    WHERE id = $1
+    RETURNING *
+    `;
+    const resultado = await pool.query(query,[id]);
+    return resultado.rows[0];
+}
+const updateUser = async ()=>{
+
 }
 
 //----------------------------------------------------------------
@@ -77,6 +88,8 @@ module.exports = {
     findById,
     getAllUser,
     crearPost,
+    deleteUser,
+    updateUser,
     getPostById,
     obtenerPost
 };

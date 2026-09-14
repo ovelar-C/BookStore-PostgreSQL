@@ -3,6 +3,7 @@ const app = express();
 const cors = require('cors');
 
 const routerUser = require('./src/routes/userRoute');
+const bookRouter = require('./src/routes/bookRoute');
 
 require('dotenv').config();
 require('./src/config/db');
@@ -17,6 +18,7 @@ app.listen(PORT,()=>{
 });
 
 app.use('/api/user', routerUser);
+app.use('/api/book', bookRouter);
 
 module.exports = app;
 

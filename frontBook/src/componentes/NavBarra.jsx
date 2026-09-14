@@ -23,7 +23,7 @@ export default function NavBarra() {
                     (<Link className="botones" to={'/login'}>Iniciar Sesion</Link>
                     )
                 }
-                {datosUser?.rol == "admin" &&
+                {datosUser?.rol_id == 2 &&
                     <Link className="botones" to={'/configuracion'}>Configuración</Link>}
             </nav>
         </>

@@ -14,14 +14,14 @@ export default function List({ datos, tipo }) {
                         {datos?.map((dato) => (
                             <li
                                 className={styles.item}
-                                key={dato._id}>
+                                key={dato.id}>
                                 {tipo == "book" ?
                                     (
                                         <>
                                             <span>{dato.title}</span>
                                             <Link
                                                 className={styles.boton}
-                                                to={`/editarbooks/${dato._id}`}>
+                                                to={`/editarbooks/${dato.id}`}>
                                                 ver más
                                             </Link>
                                         </>
@@ -30,7 +30,7 @@ export default function List({ datos, tipo }) {
                                             <span>{dato.username}</span>
                                             <Link 
                                                 className={styles.boton} 
-                                                to={`/editarusers/${dato._id}`}>
+                                                to={`/editarusers/${dato.id}`}>
                                                 ver más
                                             </Link>
                                         </>

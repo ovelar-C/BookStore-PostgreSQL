@@ -6,6 +6,8 @@ const generarToken = require('../services/generarToken');
 //registro de usuario
 const signUp = async (req, res) => {
     try {
+        console.log("datos del usuario a registrar",req.body);
+
         const { username, email, password } = req.body;
 
         const emailFind = await userModel.findEmail(email);
@@ -14,11 +16,13 @@ const signUp = async (req, res) => {
                 error: "credenciales invalidas"
             });
         }
+
         if (!(registro.validar(password))) {
             return res.status(400).json({
-                error: "contraseña debil"
+                error: "contraseña debil o caracteres invalidos"
             });
         }
+        
         const passHash = await registro.hashear(password);
 
         const resultado = await userModel.createUser(username, email, passHash);
@@ -28,7 +32,8 @@ const signUp = async (req, res) => {
             });
         }
         res.status(201).json({
-            mensaje: 'usuario registrado'
+            mensaje: 'usuario registrado',
+            usuario: resultado
         });
 
     } catch (error) {
@@ -42,9 +47,7 @@ const signUp = async (req, res) => {
 const login = async (req, res) => {
     try {
         const { email, password } = req.body;
-
         const usuario = await userModel.findEmail(email);
-
         if (!usuario) {
             return res.status(401).json({
                 error: 'credenciales invalidas'
@@ -55,15 +58,16 @@ const login = async (req, res) => {
                 error: "credenciales invalidas"
             });
         }
-
-        const token = await generarToken.generarToken(usuario);
+        const token = await generarToken(usuario);
         if (!token) {
             return res.status(500).json({
-                mensaje: "error al generar token"
+                error: "error al generar token"
             });
         }
-
-        return res.status(200).json({ token });
+        return res.status(200).json({
+            token : token,
+            usuario: usuario
+         });
 
     } catch (error) {
         return res.status(500).json({
@@ -83,11 +87,12 @@ const getProfile = async (req, res) => {
             });
         }
 
+        //eliminar id y rol
         return res.status(200).json({
             id: usuario.id,
             username: usuario.username,
             email: usuario.email,
-            rol: usuario.rol
+            rol: usuario.rol_id
         });
 
     } catch (error) {
@@ -96,12 +101,13 @@ const getProfile = async (req, res) => {
         });
     };
 }
-const getAllUser = async (req,res)=>{
+//obtener todos los usuarios
+const getAllUser = async (req, res) => {
     try {
         const usuarios = await userModel.getAllUser();
-        if(usuarios.length === 0){
+        if (usuarios.length === 0) {
             return res.status(404).json({
-                mensaje : "NO HAY USUARIOS"
+                mensaje: "NO HAY USUARIOS"
             });
         }
         return res.status(200).json(usuarios);
@@ -112,6 +118,50 @@ const getAllUser = async (req,res)=>{
         });
     }
 }
+//eliminar usuario
+const deleteUser = async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        if (!(await userModel.findById(id))) {
+            return res.status(404).json({
+                mensaje: "id no encontrada"
+            });
+        }
+        const resultado = await userModel.deleteUser(id);
+        if (!resultado) {
+            return res.status(400).json({
+                mensaje: "error al aliminar usuario"
+            });
+        }
+        return res.status(200).json({
+            mensaje: "usuario eliminado correctamente",
+            usuario: resultado
+        });
+    } catch (error) {
+        return res.status(500).json({
+            mensaje: "error del servidor"
+        });
+    }
+}
+//actualizar usuario| incompleto
+const updateUser = async (req, res) => {
+    try {
+        const id = req.usuario.id;
+        const {datos} = req.body;
+        const encontrado = await userModel.findById(id);
+        if (!encontrado) {
+            return res.status(400).json({
+                mensaje: "id no encontrado"
+            });
+        }
+        const resultado = await userModel.updateUser(datos);
+
+    } catch (error) {
+
+    }
+}
+
 
 //---------------------------------------------------------------------
 const crearPost = async (req, res) => {
@@ -183,6 +233,8 @@ module.exports = {
     getProfile,
     getAllUser,
     crearPost,
+    deleteUser,
+    updateUser,
     getPostByID,
     listarPosts,
 };

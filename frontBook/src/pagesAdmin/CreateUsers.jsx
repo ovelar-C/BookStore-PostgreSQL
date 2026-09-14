@@ -9,11 +9,10 @@ export default function CreateUsers(dataUser) {
     const [respuesta, setRespuesta] = useState(null);
     async function crearUsuarios(dataUser) {
         try {
-            console.log(dataUser);
             const response = await registerUser(dataUser);
             setRespuesta(response);
             if (response.ok) {
-                setMensaje("Exito al registar usuauris");
+                setMensaje("Exito al registar usuario");
             } else {
                 setMensaje("Error al registrar usuario")
             }

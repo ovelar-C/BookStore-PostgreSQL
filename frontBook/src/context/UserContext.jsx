@@ -11,29 +11,41 @@ export default function UserContext({ children }) {
 
     async function signUp(dataUser) {
         try {
+            console.log(dataUser);
             const response = await registerUser(dataUser);
-
+            console.log(response);
             if (response.ok) {
                 const datosNuevos = {
-                    username: response.data.username,
-                    email: response.data.email,
-                    rol: response.data.rol
+                    username: response.data.usuario.username,
+                    email: response.data.usuario.email,
+                    rol_id: response.data.usuario.rol_id
                 }
                 saveLocalStorage(datosNuevos);
+                console.log("USUARIO REGISTRADO Y GUARDADO", datosNuevos);
+
                 return navigate('/profile');
             }
+
+            return response;
             return navigate('/register');
         } catch (error) {
             console.log(error);
         }
-
     }
 
     async function signUser(dataUser) {
-        const respuesta = await signIn(dataUser);
-        if (respuesta) {
-            saveLocalStorage(respuesta);
-            navigate('/');
+        try {
+            const respuesta = await signIn(dataUser);
+            console.log(respuesta);
+            const token = respuesta.data.token;
+            console.log(respuesta.data.usuario);
+            if (respuesta.ok) {
+                saveLocalStorage(respuesta.data.usuario);
+                navigate('/');
+            }
+            return respuesta;
+        } catch (error) {
+            console.log(error);
         }
         return respuesta;
     }
